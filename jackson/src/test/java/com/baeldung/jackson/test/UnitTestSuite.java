@@ -1,7 +1,7 @@
 package com.baeldung.jackson.test;
 
 import com.baeldung.jackson.sandbox.JacksonPrettyPrintUnitTest;
-import com.baeldung.jackson.sandbox.SandboxTest;
+import com.baeldung.jackson.sandbox.SandboxUnitTest;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
@@ -12,9 +12,7 @@ import org.junit.runners.Suite;
     ,JacksonDeserializationUnitTest.class
     ,JacksonDeserializationUnitTest.class
     ,JacksonPrettyPrintUnitTest.class
-    ,JacksonSerializationIgnoreUnitTest.class
-    ,JacksonSerializationUnitTest.class
-    ,SandboxTest.class
+    ,SandboxUnitTest.class
     ,JacksonFieldUnitTest.class
 }) // @formatter:on
 public class UnitTestSuite {

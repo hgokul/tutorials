@@ -30,8 +30,8 @@ import com.baeldung.thymeleaf.config.WebMVCSecurity;
 @WebAppConfiguration
 @ContextConfiguration(classes = { WebApp.class, WebMVCConfig.class, WebMVCSecurity.class, InitSecurity.class })
 public class ExpressionUtilityObjectsControllerIntegrationTest {
-	
-	@Autowired
+
+    @Autowired
     WebApplicationContext wac;
     @Autowired
     MockHttpSession session;
@@ -41,7 +41,7 @@ public class ExpressionUtilityObjectsControllerIntegrationTest {
     @Autowired
     private Filter springSecurityFilterChain;
 
-    protected RequestPostProcessor testUser() {
+    private RequestPostProcessor testUser() {
         return user("user1").password("user1Pass").roles("USER");
     }
 
@@ -50,9 +50,19 @@ public class ExpressionUtilityObjectsControllerIntegrationTest {
         mockMvc = MockMvcBuilders.webAppContextSetup(wac).addFilters(springSecurityFilterChain).build();
     }
 
-	@Test
-	public void testGetDates() throws Exception{
-		mockMvc.perform(get("/objects").with(testUser()).with(csrf())).andExpect(status().isOk()).andExpect(view().name("objects.html"));
-	}
+    @Test
+    public void testGetObjects() throws Exception {
+        mockMvc.perform(get("/objects").with(testUser()).with(csrf())).andExpect(status().isOk()).andExpect(view().name("objects.html"));
+    }
+
+    @Test
+    public void testDates() throws Exception {
+        mockMvc.perform(get("/dates").with(testUser()).with(csrf())).andExpect(status().isOk()).andExpect(view().name("dates.html"));
+    }
+    
+    @Test
+    public void testTeachers() throws Exception {
+        mockMvc.perform(get("/listTeachers").with(testUser()).with(csrf())).andExpect(status().isOk()).andExpect(view().name("listTeachers.html"));
+    }
 
 }
